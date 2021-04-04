@@ -17,8 +17,9 @@ const GlobalStyles = createGlobalStyle`
     background: white;
   }
     }
-    body{
+    html, body, #root, .App{
         width: 100%;
+        height: 100%;
     }
     h2{
         font-size: 3rem;
@@ -39,8 +40,6 @@ const GlobalStyles = createGlobalStyle`
         text-decoration: none;
         color: #333;
     }
- 
-  
 `;
 
 export default GlobalStyles;
