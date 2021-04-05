@@ -1,14 +1,18 @@
 import { Route } from "react-router-dom";
 import GlobalStyles from "./style/GlobalStyles";
 
-import Login from "./components/Login.js"
+
+//Pages
+import WelcomePage from "./pages/welcomePage"
+
+
 
 function App() {
   return (
     <div className="App">
       <GlobalStyles />
       <Route path="/">
-        <Login />
+        <WelcomePage />
       </Route>
     </div>
   );
