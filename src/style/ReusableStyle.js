@@ -73,3 +73,17 @@ export const FilledButton = styled(Link)`
     }
   }
 `;
+
+export const Field = styled.input`
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  font-size: 1.15rem;
+
+  :hover, :focus {
+    outline: 1px solid #620bd0;
+    ::placeholder {
+      color: black;
+    }
+  }
+`;

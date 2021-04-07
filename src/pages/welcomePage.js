@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import Logo from "../components/Logo";
@@ -113,16 +113,16 @@ const StyledTitle = styled.div`
   
 `;
 const WelcomePage = () => {
-    const [width, setWidth] =useState(window.innerWidth);
-    const CheckWidth = () =>{
-        if(width > 1200) return true;
-        return false;
-    }
+  const [width, setWidth] = useState(window.innerWidth);
+  const CheckWidth = () => {
+    if (width > 1200) return true;
+    return false;
+  }
   return (
     <StyledPage>
       <StyledContent>
         <header>
-          <Logo title={true} whiteMode={(width<1200 ? true:false)} />
+          <Logo title={true} whiteMode={(width < 1200 ? true : false)} />
         </header>
         <div className="content">
           <StyledTitle>
