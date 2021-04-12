@@ -10,6 +10,7 @@ const StyledPage = styled.div`
   height: 100vh;
   overflow: hidden;
   display: flex;
+  z-index: 1;
 `;
 
 const StyledImage = styled.div`

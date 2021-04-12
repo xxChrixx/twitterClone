@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
     background: white;
   }
     }
+    
     html, body, #root, .App{
         width: 100%;
         height: 100%;
@@ -40,6 +41,10 @@ const GlobalStyles = createGlobalStyle`
     a{
         text-decoration: none;
         color: #333;
+    }
+
+    body{
+        overflow: hidden;
     }
 `;
 
