@@ -1,6 +1,6 @@
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import GlobalStyles from "./style/GlobalStyles";
-
+import styled from "styled-components";
 
 //Pages
 import WelcomePage from "./pages/welcomePage";
@@ -16,7 +16,7 @@ function App() {
       <GlobalStyles />
       <AnimatePresence exitBeforeEnter>
 
-    
+
       <Route path="/" exact>
         <WelcomePage />
       </Route>
@@ -24,7 +24,7 @@ function App() {
         <WelcomePage />
         <Subscribe />
       </Route>
-      
+
       </AnimatePresence>
     </div>
   );
