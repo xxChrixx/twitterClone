@@ -5,11 +5,23 @@ import Logo from "../components/Logo";
 import Image from "../images/HomeImage.jpg";
 import { OutlinedButton, FilledButton } from "../style/ReusableStyle";
 
-const StyledPage = styled.div`
+//animations
+import { motion } from "framer-motion";
+import { titleAnim, welcomeAnimation, photoAnim,fade } from "../animation/animation";
+
+
+
+//login 
+
+import Login from '../components/login'
+
+
+const StyledPage = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
+  flex-direction: row-reverse;
 `;
 
 const StyledImage = styled.div`
@@ -17,6 +29,7 @@ const StyledImage = styled.div`
   height: 100vh;
   position: absolute;
   z-index: -1;
+  overflow: hidden;
   img {
     object-fit: cover;
     width: 100%;
@@ -63,8 +76,7 @@ const StyledContent = styled.div`
     @media only screen and (min-width: 1200px) {
       align-items: flex-start;
       text-align: start;
-      }
-    
+    }
   }
   footer {
     height: 10vh;
@@ -90,7 +102,7 @@ const StyledContent = styled.div`
   }
 `;
 
-const StyledButtons = styled.div`
+const StyledButtons = styled(motion.div)`
   margin: 0.5rem 0;
   display: flex;
   flex-direction: column;
@@ -98,52 +110,68 @@ const StyledButtons = styled.div`
   height: 30%;
   width: 50vw;
   @media only screen and (min-width: 1200px) {
-      width: 40%;
-      height: 20%;
-      margin: 3rem 0;
-      }
+    width: 40%;
+    height: 20%;
+    margin: 3rem 0;
+  }
 `;
 
 const StyledTitle = styled.div`
   margin: 0.5rem 0;
   @media only screen and (min-width: 1200px) {
     margin: 3rem 0;
-
-      }
-  
+  }
 `;
+
+export const Hide = styled.div`
+  overflow: hidden;
+`;
+
 const WelcomePage = () => {
   const [width, setWidth] = useState(window.innerWidth);
+  const [LoginOpen, setLoginOpen] = useState(false);
   const CheckWidth = () => {
     if (width > 1200) return true;
     return false;
-  }
+  };
+
   return (
-    <StyledPage>
+    <StyledPage
+      exit="exit"
+      variants={welcomeAnimation}
+      initial="hidden"
+      animate="show"
+    >
+      <Login open={LoginOpen} setOpen={setLoginOpen}/>
+       <StyledImage>
+        <motion.img variants={photoAnim} src={Image}></motion.img>
+      </StyledImage>
       <StyledContent>
-        <header>
-          <Logo title={true} whiteMode={(width < 1200 ? true : false)} />
-        </header>
+        <motion.header variants={fade}>
+          <Logo title={true} whiteMode={width < 1200 ? true : false} />
+        </motion.header>
         <div className="content">
           <StyledTitle>
-            <h1>TWITTA INSIEME</h1>
-            <h1>A NOI !</h1>
+            <Hide>
+              <motion.h1 variants={titleAnim}>TWITTA INSIEME</motion.h1>
+            </Hide>
+            <Hide>
+              <motion.h1 variants={titleAnim}>A NOI !</motion.h1>
+            </Hide>
           </StyledTitle>
 
-          <StyledButtons>
+          <StyledButtons variants={photoAnim}>
             <FilledButton to="/Subscribe">Iscriviti</FilledButton>
-            <OutlinedButton to="/Login">Accedi</OutlinedButton>
+            <OutlinedButton onClick={()=>setLoginOpen(true)}>Accedi</OutlinedButton>
           </StyledButtons>
         </div>
-        <footer>
+        <motion.footer variants={fade}>
           <p>© Boscaro Christian - Rossi Simone</p>
           <p>Chi siamo</p>
           <p>Termini di Servizi</p>
-        </footer>
+        </motion.footer>
       </StyledContent>
-      <StyledImage>
-        <img src={Image}></img>
-      </StyledImage>
+     
     </StyledPage>
   );
 };
