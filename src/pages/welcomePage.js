@@ -14,6 +14,7 @@ import { titleAnim, welcomeAnimation, photoAnim,fade } from "../animation/animat
 //login 
 
 import Login from '../components/login'
+import Subscribe from '../components/subscribe'
 
 
 const StyledPage = styled(motion.div)`
@@ -130,6 +131,7 @@ export const Hide = styled.div`
 const WelcomePage = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [LoginOpen, setLoginOpen] = useState(false);
+  const [SubscribeOpen, setSubscribeOpen] = useState(false);
   const CheckWidth = () => {
     if (width > 1200) return true;
     return false;
@@ -143,6 +145,7 @@ const WelcomePage = () => {
       animate="show"
     >
       <Login open={LoginOpen} setOpen={setLoginOpen}/>
+      <Subscribe open={SubscribeOpen} setOpen={setSubscribeOpen}/>
        <StyledImage>
         <motion.img variants={photoAnim} src={Image}></motion.img>
       </StyledImage>
@@ -161,7 +164,7 @@ const WelcomePage = () => {
           </StyledTitle>
 
           <StyledButtons variants={photoAnim}>
-            <FilledButton to="/Subscribe">Iscriviti</FilledButton>
+            <FilledButton onClick={()=>setSubscribeOpen(true)}>Iscriviti</FilledButton>
             <OutlinedButton onClick={()=>setLoginOpen(true)}>Accedi</OutlinedButton>
           </StyledButtons>
         </div>

@@ -136,11 +136,13 @@ const Login = ({ open, setOpen }) => {
             <div className="content">
               <div className="fields">
                 <p>{errMessage}</p>
+                
                 <Field
                   placeholder="Mail"
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <Field
+                type="password"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />

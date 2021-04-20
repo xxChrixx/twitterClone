@@ -14,6 +14,12 @@ const initialState = {
           token: action.payload.token,
           profile: action.payload.profile,
         };
+        case "LOG_OUT":
+          return{
+            ...state,
+            token: "",
+          profile: {},
+          }
       default:
         return { ...state };
     }
