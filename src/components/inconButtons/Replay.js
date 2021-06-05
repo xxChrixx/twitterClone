@@ -1,14 +1,17 @@
 import React from "react"
 import styled from 'styled-components'
 
-const Container = styled.div`
+const ContainerSvg = styled.div`
 
 border-radius: 20px;
 display: flex;
 justify-content: center;
 align-items: center;
 transition: all 0.5s ease-in-out;
+
 svg{
+  display: flex;
+  height: 40px; 
   path{
     transition: all 0.4s ease-in-out;
   }
@@ -23,9 +26,11 @@ svg{
   }
 }
 `
+
+
 function Replay(props) {
   return (
-    <Container>
+    <ContainerSvg>
  <svg
       viewBox="0 0 428 420"
       xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +48,7 @@ function Replay(props) {
         strokeWidth={20}
       />
     </svg>
-    </Container>
+    </ContainerSvg>
    
   )
 }

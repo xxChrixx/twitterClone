@@ -9,7 +9,10 @@ justify-content: center;
 align-items: center;
 transition: all 0.5s ease-in-out;
 svg{
+  display: flex;
+  height: 40px; 
   path{
+    
     transition: all 0.4s ease-in-out;
   }
 }

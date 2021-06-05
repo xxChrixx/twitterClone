@@ -33,6 +33,9 @@ const StyledContainer = styled.div`
     .logout-header {
         margin-top: 1vh;
     }
+    p{
+        cursor: pointer;
+    }
 `;
 
 

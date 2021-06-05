@@ -22,7 +22,7 @@ const TweetList = ()=>{
 
 
   useEffect(() => {
-
+console.log('dispach');
     dispatch(loadHomeTweet(profile._id,token));
    
   }, [dispatch]);

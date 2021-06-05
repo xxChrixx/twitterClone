@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+
 const StyledDiv = styled.div`
     width: auto;
     display: flex;
@@ -29,13 +30,19 @@ const StyledDiv = styled.div`
         width: 22.5px;
         height: auto;
     }
+
+    @media (max-width: 750px){
+        p{
+            display: none;
+        }
+    }
 `;
 
 const NavLink = ({ path, text, imgPath }) => {
     return (
         <StyledDiv>
             <img src={imgPath} alt="" />
-            <a href={path}><p>{text}</p></a>
+        <p>{text}</p>
         </StyledDiv>
     );
 }

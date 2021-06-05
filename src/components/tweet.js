@@ -19,8 +19,9 @@ const StyledTweet = styled.div`
   border-radius: 15px;
   margin: 1rem 1rem;
   flex-direction: column;
-  max-width: 1000px;
+  max-width: 800px;
   transition: all 0.5s ease;
+  
   @media screen and (max-width: 1000px) {
     max-width: 90vw;
   }
@@ -29,13 +30,14 @@ const StyledTweet = styled.div`
     box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.3);
     margin: 2rem 1rem;
   }
+
 `;
-const TweetHeader = styled.header`
+const TweetHeader = styled.div`
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   max-height: 90px;
-
+  margin: 0;
   width: 100%;
 `;
 const UserInformation = styled.div`
@@ -111,6 +113,8 @@ const Body = styled.div`
 const BodyImage = styled.div`
   padding: 2rem 0rem;
   padding-right: 1rem;
+
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -122,10 +126,11 @@ const BodyImage = styled.div`
 
 const StyledBar = styled.div`
   svg {
-    height: 40px;
+    height: 40px; 
     cursor: pointer;
     padding: 10px;
   }
+  width: 100%;
   padding: 1rem 0rem;
   padding-right: 2rem;
   display: flex;
@@ -133,6 +138,7 @@ const StyledBar = styled.div`
   align-items: center;
   @media only screen and (max-width: 600px) {
     padding-right: 0rem;
+  
   }
 `;
 
@@ -196,14 +202,15 @@ const Tweet = ({ tweet }) => {
       <Body>
         <h4>{tweet.tweet.body}</h4>
         <BodyImage>
-          {!tweet.tweet.image === "" ? (
+        {
+          tweet.tweet.image && (
             <img
               src={`${BASE_URL}/${tweet.tweet.image}`}
               alt="profileImage"
             ></img>
-          ) : (
-            ""
-          )}
+          )
+        }
+        
         </BodyImage>
         <StyledBar>
           <Replay />

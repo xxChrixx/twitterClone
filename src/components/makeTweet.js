@@ -24,7 +24,7 @@ const Container = styled.div`
   box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   margin: 1rem;
-  max-width: 1000px;
+  max-width: 800px;
   @media screen and (max-width: 1000px){
       max-width: 90vw;
   }

@@ -15,11 +15,12 @@ import Logo from "../components/Logo.js";
 
 
 const StyledHome = styled.div`
-  display: block;
+  
   width: 100%;
   height: 100%;
   padding: 5vh 0;
-
+  overflow: hidden;
+  max-height: 100vh;
   header {
     display: flex;
     margin: 0 2.5vw;
@@ -53,7 +54,9 @@ const StyledContent = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
+  
 
+ 
   span {
     height: 3rem;
   }
@@ -69,6 +72,10 @@ const StyledTitle = styled.h1`
   }
 `;
 
+const Scroll = styled.div`
+ overflow-y: scroll;
+ height: 100%;
+`
 const Home = () => {
   const { token} = useSelector((state) => state.user);
     const [title, setTitle] = useState("Home");
@@ -84,11 +91,16 @@ const Home = () => {
         <Logo />
         <StyledTitle>{title}</StyledTitle>
       </header>
+      <Scroll>
       <StyledContent>
         <MakeTweet />
         <span />
+      
         <TweetList />
+     
+      
       </StyledContent>
+      </Scroll>
     </StyledHome>
   );
 };
