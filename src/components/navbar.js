@@ -49,9 +49,7 @@ const StyledContainer = styled.div`
       flex-direction: row;
       justify-content: space-between;
 
-      a {
-        display: none;
-      }
+    
     }
 
     .logo-header,
@@ -120,11 +118,14 @@ const Navbar = () => {
               text="Messaggi"
               imgPath="./icons/messages.svg"
             />
-            <NavLink
-              path="/profile"
+             <Link to="/profile">
+             <NavLink
+          
               text="Profilo"
               imgPath="./icons/profile.svg"
             />
+             </Link>
+            
           </StyledDiv>
           <FilledButton className="tweet-button" to="#">
             Twitta

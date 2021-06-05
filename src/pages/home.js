@@ -28,10 +28,7 @@ const StyledHome = styled.div`
     padding-bottom: 5vh;
   }
 
-  svg {
-    display: none;
-    height: 10vh;
-  }
+
 
   @media only screen and (max-width: 600px) {
     padding: 2vh 0;
@@ -75,6 +72,7 @@ const StyledTitle = styled.h1`
 const Scroll = styled.div`
  overflow-y: scroll;
  height: 100%;
+
 `
 const Home = () => {
   const { token} = useSelector((state) => state.user);
@@ -88,7 +86,7 @@ const Home = () => {
   return (
     <StyledHome>
       <header>
-        <Logo />
+        
         <StyledTitle>{title}</StyledTitle>
       </header>
       <Scroll>

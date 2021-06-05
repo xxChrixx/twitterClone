@@ -9,6 +9,7 @@ import Retweet from "./inconButtons/Retweet";
 import Replay from "./inconButtons/Replay";
 import Share from "./inconButtons/Share";
 
+import {useHistory} from 'react-router-dom'
 const StyledTweet = styled.div`
   display: flex;
   width: 100%;
@@ -144,7 +145,7 @@ const StyledBar = styled.div`
 
 const Tweet = ({ tweet }) => {
  
-
+const history = useHistory();
   const convertDate = (tweetDate) => {
     const nowDate = new Date();
     const date = new Date(tweetDate);
@@ -179,8 +180,14 @@ const Tweet = ({ tweet }) => {
 
   const DateString = dateToString()
 
+
+  const userHandler = () =>{
+    history.push(`/view/${tweet._id}`)
+  }
   return (
-    <StyledTweet>
+    <>
+    {tweet && (
+      <StyledTweet>
       <TweetHeader>
         <UserInformation>
           <ProfileImage>
@@ -192,7 +199,7 @@ const Tweet = ({ tweet }) => {
           </ProfileImage>
           <UserData>
             <h2>{tweet.name}</h2>
-            <h4>@{tweet.username}</h4>
+            <h4 onClick={userHandler}>@{tweet.username}</h4>
           </UserData>
         </UserInformation>
         <StyledDate>
@@ -220,6 +227,9 @@ const Tweet = ({ tweet }) => {
         </StyledBar>
       </Body>
     </StyledTweet>
+    )}
+     </>
+    
   );
 };
 

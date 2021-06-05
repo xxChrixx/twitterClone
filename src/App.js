@@ -7,8 +7,10 @@ import WelcomePage from "./pages/welcomePage";
 import Navbar from "./components/navbar.js";
 import Sidebar from "./components/sidebar.js";
 import UserPage from "./pages/userPage";
+import UserProfile from "./pages/userProfilePage";
 import Home from "./pages/home";
-
+import ExplorePage from './pages/explorePage'
+import ViewProfilePage from './pages/viewProfilePage'
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { loginToken } from "./actions/userAction";
@@ -47,7 +49,7 @@ function App() {
         <Route path="/Profile/edit" exact> 
           <UserPage />
         </Route>
-        <Route path="/(Home|Explore|Notifications|Messages)">
+        <Route path="/(Home|Explore|Notifications|Messages|profile|view)">
           <StyledDiv>
             <div className="navbar" style={{}}>
               <Navbar />
@@ -58,11 +60,13 @@ function App() {
                 <Home />
               </Route>
 
-              <Route path="/Explore">{/* Esplora */}</Route>
+              <Route path="/Explore"><ExplorePage/></Route>
 
               <Route path="/Notifications">{/* Notifiche */}</Route>
 
               <Route path="/Messages">{/* Messaggi */}</Route>
+              <Route path="/profile"><UserProfile/></Route>
+              <Route path="/view/:id"><ViewProfilePage/></Route>
             </div>
 
             <div className="sidebar">
@@ -92,6 +96,11 @@ const StyledDiv = styled.div`
   @media only screen and (max-width: 800px) {
     .navbar {
       flex-basis: 30%;
+      position: fixed;
+      bottom: 0;
+      z-index: 100;
+      background: white;
+      width: 100vw;
     }
     .sidebar {
       display: none;
