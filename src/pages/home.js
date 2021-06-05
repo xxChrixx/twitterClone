@@ -1,8 +1,6 @@
-import React,{useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-//header
-import Header from "../components/header";
 //makeTweet
 import MakeTweet from "../components/makeTweet";
 import TweetList from "../components/tweetList";
@@ -13,73 +11,85 @@ import TweetList from "../components/tweetList";
 
 //Redux
 import { useSelector,useDispatch } from "react-redux";
+import Logo from "../components/Logo.js";
 
 
 const StyledHome = styled.div`
- overflow-y: hidden;
   display: block;
   width: 100%;
+  height: 100%;
+  padding: 5vh 0;
 
-@media only screen and (min-width: 1200px) {
-    display: grid;
-    padding: 0 10rem;
-
-    grid-template-columns: 1fr 2fr 1fr;
-    margin: 0rem;
+  header {
+    display: flex;
+    margin: 0 2.5vw;
+    vertical-align: middle;
+    padding-bottom: 5vh;
   }
-@media only screen and (min-width: 1000px) {
 
-    padding: 1rem 10rem;
-    
-   
-    
+  svg {
+    display: none;
+    height: 10vh;
   }
- 
+
+  @media only screen and (max-width: 600px) {
+    padding: 2vh 0;
+
+    header {
+      margin: 0 10px;
+      gap: 20px;
+      align-items: center;
+    }
+
+    svg {
+      display: block;
+    }
+  }
 `;
 
 const StyledContent = styled.div`
-display: flex;
-justify-content: flex-start;
-align-items: center;
-flex-direction: column;
-position: relative;
-margin-top: 10vh;
-span{
-  height: 3rem;
-}
-@media only screen and (min-width: 1200px) {
-  
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-  }
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
 
-`
+  span {
+    height: 3rem;
+  }
+`;
+
+const StyledTitle = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  vertical-align: middle;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
+`;
+
 const Home = () => {
   const { token} = useSelector((state) => state.user);
+    const [title, setTitle] = useState("Home");
   //useEffect(() => {
   //  if (token === "") {
   //    //history.push("/");
   //  }
   //}, [token]);
-  
+
   return (
-    <div>
-      <Header />
-      <StyledHome>
-        <div></div>
-        <StyledContent>
+    <StyledHome>
+      <header>
+        <Logo />
+        <StyledTitle>{title}</StyledTitle>
+      </header>
+      <StyledContent>
         <MakeTweet />
-        <span/>
-        <TweetList/>
-        </StyledContent>
-       <div>
-         
-       </div>
-        
-      </StyledHome>
-    </div>
+        <span />
+        <TweetList />
+      </StyledContent>
+    </StyledHome>
   );
 };
 

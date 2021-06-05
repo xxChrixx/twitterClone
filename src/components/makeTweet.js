@@ -20,13 +20,17 @@ const Container = styled.div`
   width: 100%;
   background: white;
   min-height: 150px;
-  -webkit-box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.24);
-  box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   margin: 1rem;
   max-width: 1000px;
   @media screen and (max-width: 1000px){
       max-width: 90vw;
+  }
+
+  @media screen and (max-width: 600px){
+      margin: 0;
   }
 `;
 
@@ -191,7 +195,7 @@ const MakeTweet = () => {
           {previewImage && (
             <StyledImage>
               <ImageBar>
-                <button onClick={()=>{setPreviewImage(null); setImage("")}}>x</button>
+                <button onClick={() => { setPreviewImage(null); setImage("") }}>x</button>
               </ImageBar>
               <img src={previewImage} alt="possible image" />
             </StyledImage>
@@ -206,7 +210,7 @@ const MakeTweet = () => {
                 style={{ display: "none" }}
                 onChange={(e) => {
                   setImage(e.target.files[0]);
-                  if(!e.target.files[0]) return
+                  if (!e.target.files[0]) return
                   setPreviewImage(URL.createObjectURL(e.target.files[0]));
                 }}
               />

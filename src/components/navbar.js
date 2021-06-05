@@ -8,7 +8,7 @@ import { FilledButton } from "../style/ReusableStyle";
 const StyledContainer = styled.div`
     width: 100%;
     height: 100%;
-    padding: 25px 0;
+    padding: 2.5vh 0;
 
     display: flex;
     flex-wrap: nowrap;
@@ -32,6 +32,29 @@ const StyledContainer = styled.div`
         svg {
             width: auto;
             height: inherit;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        border-top: 1px solid #00000044;
+        
+        .navbar-container {
+            width: 90%;
+            margin: 0 5%;
+        }
+
+        .links {
+            
+            flex-direction: row;
+            justify-content: space-between;
+
+            a {
+                display: none;
+            }
+        }
+
+        .logo-header, .tweet-button {
+            display: none;
         }
     }
 `;
@@ -77,7 +100,7 @@ const Navbar = () => {
                     <Logo title={true} />
                 </div>
                 <StyledNav>
-                    <StyledDiv>
+                    <StyledDiv className="links">
                         <NavLink path="/home" text="Home" imgPath="./icons/home.svg" />
                         <NavLink path="/explore" text="Esplora" imgPath="./icons/explore.svg" />
                         <NavLink path="/notifications" text="Notifiche" imgPath="./icons/notifications.svg" />

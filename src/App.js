@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { Route, useHistory } from "react-router-dom";
+import react, { useEffect } from 'react'
+import { Route, Switch, useHistory } from "react-router-dom";
 import GlobalStyles from "./style/GlobalStyles";
 
 //Pages
 import WelcomePage from "./pages/welcomePage";
-import Home from "./pages/home";
+import Navbar from './components/navbar.js';
+import Sidebar from './components/sidebar.js';
 import UserPage from './pages/userPage';
-
+import Home from './pages/home'
 
 //Redux
 import { useSelector,useDispatch } from "react-redux";
@@ -23,14 +24,14 @@ function App() {
   const [cookies, setCookie] = useCookies(["auth"]);
   const dispatch = useDispatch();
 
-  
+
 
 //  useEffect(() => {
 //    console.log('test');
 //    if(cookies.auth){
 //      if(cookies.auth.token !== "" && cookies.auth.id !== ""){
 //        dispatch(loginToken(cookies.auth.id,cookies.auth.token));
-//       
+//
 //      }
 //    }
 //    if(isLoading === false){
@@ -38,27 +39,51 @@ function App() {
 //    }
 //  }, [isLoading]);
 
-  
+
 
   return (
     <div className="App">
       <GlobalStyles />
       <AnimatePresence exitBeforeEnter>
-      
-
-        <Route path="/Home" exact>
-          <Home />
-        </Route>
-
-        <Route path="/Profile/edit">
-          <UserPage />
-        </Route>
 
         <Route path="/" exact>
           <WelcomePage />
         </Route>
+
+        <Route path="/(Home|Explore|Notifications|Messages)">
+          <StyledDiv>
+            <div className="navbar" style={{}}>
+              <Navbar />
+            </div>
+            <Route path="/Profile/edit">
+              <UserPage />
+            </Route>
+            <div className="main-container">
+              <Route path="/Home">
+                <Home />
+              </Route>
+
+              <Route path="/Explore">
+                {/* Esplora */}
+              </Route>
+
+              <Route path="/Notifications">
+                {/* Notifiche */}
+              </Route>
+
+              <Route path="/Messages">
+                {/* Messaggi */}
+              </Route>
+            </div>
+
+            <div className="sidebar">
+              <Sidebar />
+            </div>
+
+          </StyledDiv>
+        </Route>
       </AnimatePresence>
-    </div>
+    </div >
   );
 }
 
