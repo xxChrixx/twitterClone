@@ -129,13 +129,10 @@ export const Hide = styled.div`
 `;
 
 const WelcomePage = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const width =window.innerWidth;
   const [LoginOpen, setLoginOpen] = useState(false);
   const [SubscribeOpen, setSubscribeOpen] = useState(false);
-  const CheckWidth = () => {
-    if (width > 1200) return true;
-    return false;
-  };
+
 
   return (
     <StyledPage

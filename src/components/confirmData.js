@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Field, FilledButton } from "../style/ReusableStyle";
+import { FilledButton } from "../style/ReusableStyle";
 
 //request
 import axios from "axios";
-import { REGISTER_ULR } from "../api/api";
+import { REGISTER_ULR, LOGIN_ULR } from "../api/api";
 
 //animations
 import { motion } from "framer-motion";
-import { fade, pageAnimation } from "../animation/animation";
+import { fade } from "../animation/animation";
 
 //redux
 import { useDispatch } from "react-redux";
@@ -114,8 +114,8 @@ div{
 
 const ConfirmData = ({ open, setOpen, data }) => {
     const [errMessage, setErrorMessage] = useState("");
-  const dispatch = useDispatch();
-  const history = useHistory();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
   const SubmitHandler = async () => {
     //make a requrst for login with axios
@@ -131,8 +131,23 @@ const bornDate = new Date(`${data.monthNumber}/${data.day}/${data.year}`)
       .then((res) => {
         console.log("user added");
         //logged in
-        // dispatch(loadUser(res.data));
-        // history.push('/home');
+        axios
+      .post(LOGIN_ULR(), {
+        email: data.email,
+        password: data.password,
+      })
+      .then((resp) => {
+        //logged in
+        dispatch(loadUser(resp.data));    
+
+       history.push('/Profile/edit');
+      })
+      .catch((err) => {
+        if (err.response) {
+          setErrorMessage(err.response.data);
+        }
+      });
+    
       })
       .catch((err) => {
           console.log(err.response);
@@ -159,6 +174,9 @@ setOpen(false)
               <h1>DATI</h1>
             </header>
             <StyledData>
+              <div>
+                <h3>{errMessage}</h3>
+              </div>
                 <div>
                     <h3>Nome:</h3>
                     <h4>{data.name}</h4>

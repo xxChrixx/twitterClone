@@ -18,6 +18,9 @@ import { loadUser } from "../actions/userAction";
 //page
 import {useHistory} from 'react-router-dom'
 
+//import cookie 
+import { useCookies } from 'react-cookie';
+
 const StyledPage = styled(motion.div)`
   width: 100vw;
   height: 100vh;
@@ -58,6 +61,13 @@ const StyledContent = styled(motion.div)`
     gap: 15px;
   }
 
+label{
+  margin-left: 1rem;
+  font-size: 1rem;
+  color: gray;
+  font-weight: normal;
+
+}
   #SignInButton {
     width: 50%;
     float: right;
@@ -85,6 +95,8 @@ const Login = ({ open, setOpen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrorMessage] = useState("");
+  const [SaveUser, setSaveUser] = useState(false);
+  const [cookies, setCookie] = useCookies(['auth']);
   const dispatch = useDispatch();
   const history = useHistory();
   const SubmitHandler = async () => {
@@ -94,14 +106,23 @@ const Login = ({ open, setOpen }) => {
     //make a requrst for login with axios
 
     axios
-      .post("http://localhost:3001/api/user/login", {
+      .post(LOGIN_ULR(), {
         email: email,
         password: password,
       })
       .then((res) => {
         //logged in
         dispatch(loadUser(res.data));
-        history.push('/home');
+
+        //save login 
+        console.log(SaveUser);
+        if(SaveUser){
+          setCookie("auth",{token: res.data.token, id: res.data.profile._id})
+          console.log(cookies.auth.id, cookies.auth.token);
+        }
+        
+
+       history.push('/home');
       })
       .catch((err) => {
         if (err.response) {
@@ -133,7 +154,7 @@ const Login = ({ open, setOpen }) => {
             <header>
               <h1>ACCEDI</h1>
             </header>
-            <div className="content">
+            <form className="content" onSubmit={e=> {e.preventDefault(); SubmitHandler(e)}}>
               <div className="fields">
                 <p>{errMessage}</p>
                 
@@ -146,11 +167,16 @@ const Login = ({ open, setOpen }) => {
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+
+                <div>
+                  <input type="checkbox" onChange={e=>setSaveUser(e.target.checked)} />
+                  <label>Ricordami</label>
+                </div>
               </div>
               <FilledButton id="SignInButton" onClick={SubmitHandler}>
                 Accedi
               </FilledButton>
-            </div>
+            </form>
           </StyledContent>
         </StyledPage>
       ) : (

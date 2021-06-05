@@ -1,7 +1,7 @@
 const initialState = {
     token: "",
     profile: {  },
- 
+    isLoading: true,
   };
   
 
@@ -13,6 +13,12 @@ const initialState = {
           ...state,
           token: action.payload.token,
           profile: action.payload.profile,
+          isLoading: false
+        };
+        case "USER_LOADING":
+        return{
+          ...state,
+          isLoading: true,
         };
         case "LOG_OUT":
           return{

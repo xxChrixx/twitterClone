@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import styled from "styled-components";
 
 import ImageProfile from "../images/defaultImage.png";
@@ -137,7 +137,7 @@ const StyledBar = styled.div`
 `;
 
 const Tweet = ({ tweet }) => {
-  // const [Date, setDate] = useState("");
+ 
 
   const convertDate = (tweetDate) => {
     const nowDate = new Date();
@@ -171,7 +171,7 @@ const Tweet = ({ tweet }) => {
     return `${timeGap.minutes} minuti fa`;
   };
 
-  const [DateString, setDateString] = useState(dateToString());
+  const DateString = dateToString()
 
   return (
     <StyledTweet>
@@ -196,10 +196,10 @@ const Tweet = ({ tweet }) => {
       <Body>
         <h4>{tweet.tweet.body}</h4>
         <BodyImage>
-          {!tweet.tweet.image == "" ? (
+          {!tweet.tweet.image === "" ? (
             <img
               src={`${BASE_URL}/${tweet.tweet.image}`}
-              alt="profile image"
+              alt="profileImage"
             ></img>
           ) : (
             ""

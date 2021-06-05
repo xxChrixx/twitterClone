@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 
 import { useHistory} from 'react-router-dom'
@@ -8,6 +8,9 @@ import Logo from "./Logo";
 
 //Redux
 import { useDispatch } from "react-redux";
+
+//import cookie
+import { useCookies } from "react-cookie";
 
 const StyledHeader = styled.header`
   height: 10vh;
@@ -60,10 +63,12 @@ div{
 `;
 const Header = () => {
     const [title, setTitle] = useState("Home");
+    const [cookies, setCookie,removeCookie] = useCookies(["auth"]);
     const history = useHistory();
     const dispatch = useDispatch();
     const LogoOutHandler = () =>{
-      
+      removeCookie('auth');
+    
       dispatch({type: "LOG_OUT"});
       history.push('/')
     }

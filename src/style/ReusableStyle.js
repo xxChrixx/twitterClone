@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-export const OutlinedButton = styled(Link)`
+
+export const OutlinedButton = styled.button`
+cursor: pointer;
   display: flex;
   height: 2.5px;
   min-width: 150px;
@@ -38,7 +39,9 @@ export const OutlinedButton = styled(Link)`
 
 //
 //#620bd0;
-export const FilledButton = styled(Link)`
+export const FilledButton = styled.button`
+border: none;
+cursor: pointer;
   width: 100%;
   height: 2.5px;
   min-width: 150px;

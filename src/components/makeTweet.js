@@ -160,7 +160,7 @@ const MakeTweet = () => {
     console.log(profile._id);
     formData.append("userId", profile._id);
     formData.append("tweet", JSON.stringify(tweet));
-    if (Image != "") {
+    if (Image !== "") {
       formData.append("tweetImage", Image);
     }
 
@@ -178,7 +178,7 @@ const MakeTweet = () => {
     <Container>
       <Margin>
         <IconContainer>
-          <img src={defaultImge}></img>
+          <img src={defaultImge} alt="PI"></img>
         </IconContainer>
 
         <StyledContent>
@@ -213,7 +213,7 @@ const MakeTweet = () => {
               <img
                 src={imageIcon}
                 onClick={() => inputFile.current.click()}
-                alt=""
+                alt="imageIcon"
               />
             </IconBar>
             <StyledButton onClick={SubmitHandler}>Twitta</StyledButton>

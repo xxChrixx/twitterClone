@@ -3,17 +3,13 @@ import styled from "styled-components";
 
 import { Field, FilledButton } from "../style/ReusableStyle";
 
-//request
-import axios from "axios";
-import { REGISTER_ULR } from "../api/api";
+
 
 //animations
 import { motion } from "framer-motion";
 import { fade, pageAnimation } from "../animation/animation";
 
-//redux
-import { useDispatch } from "react-redux";
-import { loadUser } from "../actions/userAction";
+
 
 //page
 import ConfirmData from './confirmData'
@@ -232,17 +228,17 @@ const Subscribe = ({ open, setOpen }) => {
                 <StyledBorn>
                   <select  onChange={(e) => setBornYear(e.target.value)} value={bornYear} >
                     {years.map((year) => (
-                      <option>{year}</option>
+                      <option key={year}>{year}</option>
                     ))}
                   </select>
                   <select onChange={(e) => setBornMonth(e.target.value)} value={bornMonth}>
                     {months.map((month) => (
-                      <option>{month}</option>
+                      <option key={month}>{month}</option>
                     ))}
                   </select>
                   <select onChange={e=> setbornDay(e.target.value)} value={bornDay}>
                     {dayList &&
-                      dayList.map((month) => <option>{month}</option>)}
+                      dayList.map((day) => <option key={day}>{day}</option>)}
                   </select>
                 </StyledBorn>
               </form>
